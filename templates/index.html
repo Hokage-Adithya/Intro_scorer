@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Introduction Scorer - Nirmaan AI</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🎓 Student Introduction Scorer</h1>
+            <p class="subtitle">AI-Powered Communication Skills Assessment Tool</p>
+        </header>
+
+        <main>
+            <div class="input-section">
+                <h2>Enter Student Transcript</h2>
+                <textarea 
+                    id="transcript" 
+                    placeholder="Paste the student's self-introduction transcript here...&#10;&#10;Example:&#10;Hello everyone, myself Muskan, studying in class 8th B section from Christ Public School..."
+                    rows="10"
+                ></textarea>
+                
+                <div class="button-group">
+                    <button id="scoreBtn" onclick="scoreTranscript()">
+                        📊 Score Transcript
+                    </button>
+                    <button id="clearBtn" onclick="clearForm()" class="secondary">
+                        🗑️ Clear
+                    </button>
+                    <button id="sampleBtn" onclick="loadSample()" class="secondary">
+                        📝 Load Sample
+                    </button>
+                </div>
+            </div>
+
+            <div id="loading" class="loading" style="display: none;">
+                <div class="spinner"></div>
+                <p>Analyzing transcript with AI...</p>
+            </div>
+
+            <div id="results" class="results-section" style="display: none;">
+                <h2>📈 Scoring Results</h2>
+                
+                <div class="overall-score">
+                    <div class="score-circle">
+                        <div class="score-value" id="overallScore">0</div>
+                        <div class="score-label">Overall Score</div>
+                    </div>
+                    <div class="score-details">
+                        <p><strong>Total Words:</strong> <span id="totalWords">0</span></p>
+                        <p id="scoreInterpretation"></p>
+                    </div>
+                </div>
+
+                <h3>Detailed Breakdown by Criteria</h3>
+                <div id="criteriaBreakdown" class="criteria-container">
+                    <!-- Criteria cards will be inserted here -->
+                </div>
+
+                <div class="export-section">
+                    <button onclick="exportResults()" class="secondary">
+                        💾 Export as JSON
+                    </button>
+                </div>
+            </div>
+
+            <div id="error" class="error-message" style="display: none;"></div>
+        </main>
+
+        <footer>
+            <p>Built for Nirmaan Education • AI Internship Case Study</p>
+        </footer>
+    </div>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
